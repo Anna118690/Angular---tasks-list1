@@ -7,6 +7,7 @@ import  {Task} from './task'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+ 
   config: { [ key : string]: string |Date } = null;
   tasks: Task[] = [
     {
@@ -27,10 +28,33 @@ export class AppComponent {
 
   ]
   constructor() {
-    this.config = {
-      title: 'My tasks for next month',
-      footer: '@Lista zadan zbudowana w Angularze.',
-      date: new Date()
-    };
-  }
+    setTimeout(() => {
+      this.config = {
+        title: 'Lista zadań Anna',
+        footer: '© Lista zadań zbudowana w Angularze.',
+        date: new Date(),
+      };
+    }, 500);  }
+
+
+    clearTasks() {
+      this.tasks = [];
+    }
+
+
+
+    createTask(name: string, deadline: string) {
+      const task: Task = {
+        name,
+        deadline, 
+        done: false,
+      };
+      this.tasks.push(task);
+    }
+
+
+
+
+
+
 }
