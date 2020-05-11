@@ -42,10 +42,10 @@
         <span class="col s10">
             {{i +1}}. {{t.name}} - {{t.deadline  |date: 'd.MM EEEE':'':'pl'}}</span>
         <div class="col s2 right-align">
-          <button class="btn-floating btn-small red">
+          <button class="btn-floating btn-small red" (click)="deleteTask(t)">
             <i class="material-icons">remove</i>
           </button>
-          <button class="btn-floating btn-small green ml-5">
+          <button class="btn-floating btn-small green ml-5" (click)="markTaskAsDone(t)">
             <i class="material-icons">check</i>
           </button>
         </div>

@@ -15,17 +15,29 @@ export class AppComponent {
   tasks: Task[] = [
     {
     name: 'English learning one hour',
-    deadline: '2020-06-07',
+    deadline: '2020-05-07',
     done: true,
     },
     {
       name: 'Dutch learning one hour',
-      deadline: '2020-06-08',
+      deadline: '2020-05-08',
       done: true,
       },
       {
         name: 'French learning one hour',
         deadline: '2020-06-09',
+        done: false,
+      }
+      ,
+      {
+        name: 'Gym 2 hours',
+        deadline: '2020-06-10',
+        done: false,
+      }
+      ,
+      {
+        name: 'Angular 3 hours ',
+        deadline: '2020-06-11',
         done: false,
       }
 
@@ -37,7 +49,8 @@ export class AppComponent {
         footer: '© Lista zadań zbudowana w Angularze.',
         date: new Date(),
       };
-    }, 500);  }
+    }, 500);
+  this.sortTasks();  }
 
 
     clearTasks() {
@@ -55,10 +68,28 @@ export class AppComponent {
       this.tasks.push(task);
       this.taskName = '';
       this.taskDate= '';
+      this.sortTasks();
     }
 
     switchEditMode(){
       this.editMode = !this.editMode;
+    }
+
+    markTaskAsDone(task:Task) {
+      task.done = true;
+      this.sortTasks();
+    }
+
+    deleteTask(task:Task) {
+      this.tasks=this.tasks.filter(e => e !==task);
+      this.sortTasks();
+    }
+
+    private sortTasks(){
+      this.tasks = this.tasks.sort( (a: Task, b: Task) => 
+      a.done === b.done ? 0 : a.done ? 1  : -1
+      );
+
     }
 
 
