@@ -8,19 +8,20 @@ import  {Task} from './task'
 })
 export class AppComponent {
   editMode = false;
- taskName = 'Sugerowane zadanie codzienne: odkurzanie';
- taskDate="";
-  config: { [ key : string]: string |Date } = null;
+   taskName = 'Sugerowane zadanie codzienne: odkurzanie';
+   taskDate='';
+  config: { [ key : string]: string | Date } = null;
+
   tasks: Task[] = [
     {
     name: 'English learning one hour',
     deadline: '2020-06-07',
-    done: false,
+    done: true,
     },
     {
       name: 'Dutch learning one hour',
       deadline: '2020-06-08',
-      done: false,
+      done: true,
       },
       {
         name: 'French learning one hour',
@@ -59,12 +60,6 @@ export class AppComponent {
     switchEditMode(){
       this.editMode = !this.editMode;
     }
-
-
-
-
-
-
 
 
 }

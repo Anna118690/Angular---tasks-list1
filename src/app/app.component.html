@@ -1,7 +1,7 @@
 <div class="container">
     <nav class="row">
       <div class="nav-wrapper">
-        <span class="brand-logo center">{{config.title}}</span>
+        <span class="brand-logo center">{{config?.title | uppercase}}</span>
       </div>
     </nav>
   
@@ -20,10 +20,9 @@
         class="col s8"
         type="text"
         placeholder="Dodaj zadanie i datę wykonania"
-        
-     
      [(ngModel)] = "taskName"
       />
+
       <input class="col s2 disabled" 
       type="date" 
       [(ngModel)] ="taskDate"
@@ -36,8 +35,10 @@
       >+</button>
     </div>
   
-    <ul class="collection" *ngIf="tasks.length>0; else noTasks">
-      <li class="collection-item row" *ngFor = "let t of tasks; let i  = index">
+    <ul class="collection" *ngIf="tasks.length > 0; else noTasks">
+      <ng-container *ngFor = "let t of tasks; let i  = index" [ngSwitch]="t.done">
+     
+        <li class="collection-item row" *ngSwitchCase="false" >
         <span class="col s10">
             {{i +1}}. {{t.name}} - {{t.deadline  |date: 'd.MM EEEE':'':'pl'}}</span>
         <div class="col s2 right-align">
@@ -49,9 +50,11 @@
           </button>
         </div>
       </li>
-      <li class="collection-item row">
-        <span class="col done">Sprzątanie kuwet</span>
+
+      <li class="collection-item row" *ngSwitchCase="true">
+        <span class="col done">{{t.name}}</span>
       </li>
+    </ng-container>
     </ul>
   <ng-template #noTasks>
     <h1>Dzisiaj brak zadań :-)</h1>
