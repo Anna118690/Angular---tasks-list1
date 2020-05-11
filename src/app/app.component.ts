@@ -7,7 +7,8 @@ import  {Task} from './task'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
- 
+ taskName = 'Sugerowane zadanie codzienne: odkurzanie';
+ taskDate="";
   config: { [ key : string]: string |Date } = null;
   tasks: Task[] = [
     {
@@ -43,13 +44,15 @@ export class AppComponent {
 
 
 
-    createTask(name: string, deadline: string) {
+    createTask() {
       const task: Task = {
-        name,
-        deadline, 
+        name: this.taskName,
+        deadline: this.taskDate,
         done: false,
       };
       this.tasks.push(task);
+      this.taskName = '';
+      this.taskDate= '';
     }
 
 
